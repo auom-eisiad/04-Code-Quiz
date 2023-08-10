@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Coding Quiz</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type="text/css" href='assets/style.css'>
+
+    // Google fonts
+    <link href="#">
+</head>
+
+<body>
+
+    <header>
+        <div class="quiz-title">Coding Quiz</div>
+        
+    </header>
+
+    <main>
+            <div class="question-box">
+                <div class="question-progress"></div>
+                <div class="decor">
+                    <img src="#" alt="#">
+                </div>
+                <!-- questions class will change with each one -->
+                <h2 class="questions">Question Here</h2>
+            </div>
+
+            <div class="answers">
+                <button class="start-btn">Begin</button>
+                <button class="skip-btn" type="button" role="button">
+                    Skip
+                </button>
+
+                <ul class="ansUl">
+                    <li class="ansLi">
+                        <button class="ans">Answer 1</button>
+                    </li>
+
+                    <li class="ansLi">
+                        <button class="ans">Answer 2</button>
+                    </li>
+
+                    <li class="ansLi">
+                        <button class="ans">Answer 3</button>
+                    </li>
+
+                    <li class="ansLi">
+                        <button class="ans">Answer 4</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="numbers">
+                <p class="timer">Timer:</p>
+                <p class ="score">Score: 0</p>
+            </div>
+
+            <div class="score-board">
+                <h2>Well done!</h2>
+                <p>
+                    Final Score: 
+                    <span id="total-score">____</span>
+                </p>
+
+                <p>Enter your initials:</p>
+                <input id="initial" type="text" name="name">
+                <button class="sumbit-btn">Submit</button>
+            </div>
+
+            <div>
+                <h2>HIGH SCORE</h2>
+                <ul class="winners">
+                    <li class="win">
+                        Name
+                    </li>
+                    
+                    <li class="win">
+                        Name
+                    </li>
+
+                    <li class="win">
+                        Name
+                    </li>
+
+                    <li class="win">
+                        Name
+                    </li>
+
+                    <li class="win">
+                        Name
+                    </li>
+                </ul>
+                <button class="restart-btn">Try Again?</button>
+            </div>
+    </main>
+
+    <script src='script.js'></script>
+</body>
+
+</html>
