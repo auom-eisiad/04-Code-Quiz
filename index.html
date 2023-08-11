@@ -21,12 +21,17 @@
     </header>
 
     <main>
+            <div class="numbers">
+                <p class="timer">TIMER:</p>
+                <p class ="score">SCORE: 0</p>
+            </div>
+
             <section class="box">
                 <div class="questions">
-                    <div class="question-progress"></div>
-                    <div class="decor">
+                    <div class="question-progress">5 / 5</div>
+                    <!-- <div class="decor">
                         <img src="#" alt="#">
-                    </div>
+                    </div> -->
                     <!-- questions class will change with each one -->
                     <h2 class="question-here">Question Here</h2>
                 </div>
@@ -54,47 +59,25 @@
                 </div>
             </section>
 
-            <div class="numbers">
-                <p class="timer">TIMER:</p>
-                <p class ="score">SCORE: 0</p>
-            </div>
-
             <div class="score-board">
-                <h2>WELL DONE!</h2>
+                <h2>Here's your score!</h2>
                 <p>
                     FINAL SCORE: 
                     <span id="total-score">____</span>
                 </p>
 
-                <p>Enter your initials:</p>
+                <h3>Enter your initials:</h3>
                 <input id="initial" type="text" name="name">
-                <button class="sumbit-btn">Submit</button>
             </div>
 
-            <div>
+            <div class="sub">
+                <button class="submit-btn">SUBMIT</button>
+            </div>
+
+            <div class="high-score">
                 <h2>HIGH SCORE</h2>
-                <ul class="winners">
-                    <li class="win">
-                        Name
-                    </li>
-                    
-                    <li class="win">
-                        Name
-                    </li>
-
-                    <li class="win">
-                        Name
-                    </li>
-
-                    <li class="win">
-                        Name
-                    </li>
-
-                    <li class="win">
-                        Name
-                    </li>
-                </ul>
-                <button class="restart-btn">Try Again?</button>
+                <span id="winners"></span>
+                <button class="restart-btn">RESTART</button>
             </div>
     </main>
 
