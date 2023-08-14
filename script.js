@@ -1,4 +1,4 @@
-// hold the classes in variables
+// Hold the classes in variables
 var text = document.querySelector(".question-here");
 var answers = document.querySelector(".answers");
 var score = document.querySelector(".score");
@@ -8,13 +8,13 @@ var restartButton = document.querySelector(".restart-btn");
 var submitButton = document.querySelector(".submit-btn");
 var name = document.getElementById("initial");
 
-// hold global variables 
-var userChoice;
+// Hold global variables 
+var nextQuestion = 0;
 var scoreCounter = 0;
 var timer;
 var timerCount;
 
-// array of all 5 questions that will be displayed
+// Array of all 5 questions that will be displayed
 var questions = [
     {
         text: "What tag is used to create an interactive field for web-based forms that users can use to enter data?",
@@ -50,22 +50,18 @@ var questions = [
     }, 
 ]
 
-// when user clicks on begin button, the game starts
+// When user clicks on begin button, the game starts
 startButton.addEventListener("click", function(event) {
     event.preventDefault();
 
-    // timer will go off
+    // Timer and Questions will go off
     startTimer();
     startQuiz();
 
-    // when button is clicked, it will hide the button
+    // When button is clicked, it will hide the button
     startButton.style.display = "none";
     console.log("Clicked");
 });
-
-// function init() {
-//     getScore();
-// }
 
 // Once user click on begin, the timer starts and display first question with choices
 function startQuiz() {
@@ -87,15 +83,14 @@ function startQuiz() {
 
       // Add a click event listener to the answer button
       answerButton.addEventListener("click", () => {
-        // Handle the answer selection here
-        // For example, you can check if the answer is correct and update the score
+       
       });
   
       // Style the answer button
         answerButton.style.backgroundColor = "#018786";
         answerButton.style.color = "white";
         answerButton.style.fontSize = "20px";
-        answerButton.style.padding = "10px 40px";
+        answerButton.style.padding = "10px 20px";
         answerButton.style.border = "none";
         answerButton.style.borderRadius = "10px";
         answerButton.style.cursor = "pointer";
@@ -107,7 +102,7 @@ function startQuiz() {
         answerButton.style.backgroundColor = "#03ac9b";
         answerButton.style.color = "white";
         answerButton.style.fontSize = "20px";
-        answerButton.style.padding = "10px 40px";
+        answerButton.style.padding = "10px 20px";
         answerButton.style.border = "none";
         answerButton.style.borderRadius = "10px";
         answerButton.style.cursor = "pointer";
@@ -120,7 +115,7 @@ function startQuiz() {
         answerButton.style.backgroundColor = "#018786";
         answerButton.style.color = "white";
         answerButton.style.fontSize = "20px";
-        answerButton.style.padding = "10px 40px";
+        answerButton.style.padding = "10px 20px";
         answerButton.style.border = "none";
         answerButton.style.borderRadius = "10px";
         answerButton.style.cursor = "pointer";
@@ -149,7 +144,7 @@ function startQuiz() {
 
 // function to hold the timer
 function startTimer() {
-    timerCount = 10;
+    timerCount = 50;
 
     timer = setInterval(function() {
         timerCount--;
