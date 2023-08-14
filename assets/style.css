@@ -70,10 +70,17 @@ header {
 .numbers {
     position: absolute;
     top: 7rem;
-    right: 2rem;
+    right: 3rem;
     text-align: right;
+    font-family: var(--ftfam);
+    font-weight: bold;
 }
 
+.timer {
+    position: absolute;
+    line-height: 3.2rem;
+}
+    
 .start {
     text-align: center;
     margin-top: 20px;

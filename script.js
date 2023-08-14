@@ -83,7 +83,7 @@ function startQuiz() {
       const answerButton = document.createElement("button");
   
       // Set the text content of the answer button
-      answerButton.textContent = `${index + 1}. ${answer}`;
+      answerButton.textContent = `${answer}`;
 
       // Add a click event listener to the answer button
       answerButton.addEventListener("click", () => {
@@ -95,7 +95,7 @@ function startQuiz() {
         answerButton.style.backgroundColor = "#018786";
         answerButton.style.color = "white";
         answerButton.style.fontSize = "20px";
-        answerButton.style.padding = "10px 20px";
+        answerButton.style.padding = "10px 40px";
         answerButton.style.border = "none";
         answerButton.style.borderRadius = "10px";
         answerButton.style.cursor = "pointer";
@@ -107,7 +107,7 @@ function startQuiz() {
         answerButton.style.backgroundColor = "#03ac9b";
         answerButton.style.color = "white";
         answerButton.style.fontSize = "20px";
-        answerButton.style.padding = "10px 20px";
+        answerButton.style.padding = "10px 40px";
         answerButton.style.border = "none";
         answerButton.style.borderRadius = "10px";
         answerButton.style.cursor = "pointer";
@@ -120,7 +120,7 @@ function startQuiz() {
         answerButton.style.backgroundColor = "#018786";
         answerButton.style.color = "white";
         answerButton.style.fontSize = "20px";
-        answerButton.style.padding = "10px 20px";
+        answerButton.style.padding = "10px 40px";
         answerButton.style.border = "none";
         answerButton.style.borderRadius = "10px";
         answerButton.style.cursor = "pointer";
