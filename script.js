@@ -1,6 +1,6 @@
 // hold the classes in variables
 var text = document.querySelector(".question-here");
-var answers = document.querySelector(".answer-here");
+var answers = document.querySelector(".answers");
 var score = document.querySelector(".score");
 var time = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-btn");
@@ -67,22 +67,71 @@ startButton.addEventListener("click", function(event) {
 //     getScore();
 // }
 
-// once user click on begin, the timer starts and display first question
+// Once user click on begin, the timer starts and display first question with choices
 function startQuiz() {
     const randomIndex = Math.floor(Math.random() * questions.length);
     const randomQuestion = questions[randomIndex];
+  
+    // Display the question text
+    text.textContent = randomQuestion.text;
+  
+    // Clear the answers container
+    answersContainer.innerHTML = '';
+  
+    // Create a button element for each answer
+    randomQuestion.answers.forEach((answer, index) => {
+      const answerButton = document.createElement("button");
+  
+      // Set the text content of the answer button
+      answerButton.textContent = `${index + 1}. ${answer}`;
 
-   text.textContent = randomQuestion.text;
+      // Add a click event listener to the answer button
+      answerButton.addEventListener("click", () => {
+        // Handle the answer selection here
+        // For example, you can check if the answer is correct and update the score
+      });
+  
+      // Style the answer button
+        answerButton.style.backgroundColor = "#018786";
+        answerButton.style.color = "white";
+        answerButton.style.fontSize = "20px";
+        answerButton.style.padding = "10px 20px";
+        answerButton.style.border = "none";
+        answerButton.style.borderRadius = "10px";
+        answerButton.style.cursor = "pointer";
 
-    randomQuestion.answers.forEach((answers, index) => {
-        const answerElement = document.createElement("p");
-    
-        // Set the text content of the answer element
-        answerElement.textContent = `${index + 1}. ${answers}`;
+      // Add a mouse enter event listener when mouse hover button
+      answerButton.addEventListener("mouseenter", () => {
+            
+        // Style the button when mouse hover over
+        answerButton.style.backgroundColor = "#03ac9b";
+        answerButton.style.color = "white";
+        answerButton.style.fontSize = "20px";
+        answerButton.style.padding = "10px 20px";
+        answerButton.style.border = "none";
+        answerButton.style.borderRadius = "10px";
+        answerButton.style.cursor = "pointer";
+      });
+      
+      // Add a mouse leave event listener when mouse leave button
+      answerButton.addEventListener("mouseleave", () => {
+
+        // Style the button when mouse leave
+        answerButton.style.backgroundColor = "#018786";
+        answerButton.style.color = "white";
+        answerButton.style.fontSize = "20px";
+        answerButton.style.padding = "10px 20px";
+        answerButton.style.border = "none";
+        answerButton.style.borderRadius = "10px";
+        answerButton.style.cursor = "pointer";
+      });
+  
+      // Append the answer button to the answers container
+      answersContainer.appendChild(answerButton);
     });
-
+  
     return randomQuestion.correct;
-}
+  }
 
 // function correctAnswer() {
 //     text.textContent = "Correct!";
@@ -114,4 +163,3 @@ function startTimer() {
 // function setScore() {
 //     if ()
 // }
-

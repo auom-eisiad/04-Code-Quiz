@@ -131,34 +131,9 @@ header {
 .answers {
     text-align: center;
     position: var(--post);
-    top: 10rem;
-}
-
-.ansUl {
-    position: var(--post);
-    top: 2rem;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
-
-.ansLi {
-    list-style: none;
-    line-height: 5;
-}
-
-.ans {
-    font-family: var(--ftfam);
-    font-size: 18px;
-    padding: 0px 50px;
-    border: 0px;
-    border-radius: 10%;
-    line-height: 3;
-    color: var(--white);
-    background-color: var(--turquoise);
-}
-
-.ans:hover {
-    background-color: var(--cyan);
+    top: 12rem;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .score-board {
