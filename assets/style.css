@@ -74,6 +74,11 @@ header {
     text-align: right;
 }
 
+.start {
+    text-align: center;
+    margin-top: 20px;
+}
+
 /* add "less-than" symbol for display before title */
 .quiz-title::before {
     content: "\003C";
@@ -98,7 +103,7 @@ header {
 .box {
     border: 0;
     border-radius: 5%;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-left: 250px;
     margin-right: 250px;
     height: 700px;
@@ -139,6 +144,21 @@ header {
 .ansLi {
     list-style: none;
     line-height: 5;
+}
+
+.ans {
+    font-family: var(--ftfam);
+    font-size: 18px;
+    padding: 0px 50px;
+    border: 0px;
+    border-radius: 10%;
+    line-height: 3;
+    color: var(--white);
+    background-color: var(--turquoise);
+}
+
+.ans:hover {
+    background-color: var(--cyan);
 }
 
 .score-board {
