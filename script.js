@@ -65,6 +65,11 @@ startButton.addEventListener("click", function(event) {
 
 // Once user click on begin, the timer starts and display first question with choices
 function startQuiz() {
+
+    // display the question progress completed so far
+    let currentQuestion = 1;
+    document.querySelector(".questionNumber").innerText = currentQuestion;
+    
     const randomIndex = Math.floor(Math.random() * questions.length);
     const randomQuestion = questions[randomIndex];
   
