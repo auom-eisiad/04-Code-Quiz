@@ -9,7 +9,7 @@ var submitButton = document.querySelector(".submit-btn");
 var name = document.getElementById("initial");
 
 // Hold global variables 
-var nextQuestion = 0;
+var currentQuestionIndex = 0;
 var scoreCounter = 0;
 var timer;
 var timerCount;
@@ -63,24 +63,43 @@ startButton.addEventListener("click", function(event) {
     console.log("Clicked");
 });
 
+// Shuffle the questions array inspired from the Fisher-Yates shuffle
+function shuffleQuestions(arr) {
+
+    // Start from the last index of the array and swap one by one
+    for (let i = arr.length - 1; i > 0; i--) {
+    
+      // Pick a random index in the array from 0 to i
+      const randomIndex = Math.floor(Math.random() * (i + 1));
+
+      // Swap the arr[i] and arr[randomIndex] vice versa at random
+      [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]];
+    }
+  }
+  
+  // Randomize the order of the questions
+  shuffleQuestions(questions);
+
 // Once user click on begin, the timer starts and display first question with choices
 function startQuiz() {
 
     // display the question progress completed so far
-    let currentQuestion = 1;
+    let currentQuestion = currentQuestionIndex + 1;
     document.querySelector(".questionNumber").innerText = currentQuestion;
     
-    const randomIndex = Math.floor(Math.random() * questions.length);
-    const randomQuestion = questions[randomIndex];
+    // Retrieve the current question from the questions arry
+    const currentQuestionData = questions[currentQuestionIndex];
   
-    // Display the question text
-    text.textContent = randomQuestion.text;
+    // Display the question and current question index text
+    text.textContent = currentQuestionData.text;
   
     // Clear the answers container
     answersContainer.innerHTML = '';
   
-    // Create a button element for each answer
-    randomQuestion.answers.forEach((answer, index) => {
+    // Iterate each element in the answers array of the current question data 
+    currentQuestionData.answers.forEach((answer, index) => {
+
+      // Create a button element for each answer
       const answerButton = document.createElement("button");
   
       // Set the text content of the answer button
@@ -90,12 +109,15 @@ function startQuiz() {
       answerButton.addEventListener("click", function(event) {
         event.preventDefault();
 
-        if (questions.answers == questions.correct) {
-            console.log("correct");
+        // Check if the selected answer is correct or not. Otherwise, time will be deducted.
+        if (answerButton.textContent === currentQuestionData.correct) {
+            console.log("Correct");
+        } else {
+            console.log("Wrong");
         }
-        else {
-            console.log("wrong");
-        }
+
+        // Move to next question
+        nextQuestion();
       });
   
       // Style the answer button
@@ -137,8 +159,23 @@ function startQuiz() {
       answersContainer.appendChild(answerButton);
     });
   
-    return randomQuestion.correct;
-  }
+    return currentQuestionData.correct;
+}
+
+// Function to move to the next question
+function nextQuestion() {
+    // Increment the current question index
+    currentQuestionIndex++;
+  
+    // Check if there are more questions available
+    if (currentQuestionIndex < questions.length) {
+      // Move to the next question
+      startQuiz();
+    } else {
+      // Handle the case when there are no more questions
+      console.log("No more questions");
+    }
+}
 
 // function to hold the timer
 function startTimer() {
@@ -153,6 +190,3 @@ function startTimer() {
         } 
     }, 1000);
 }
-// function setScore() {
-//     if ()
-// }
