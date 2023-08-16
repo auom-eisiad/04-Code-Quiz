@@ -6,7 +6,6 @@ var time = document.querySelector(".timer-count");
 var scoring = document.querySelector(".scoring");
 var startButton = document.querySelector(".start-btn");
 var restartButton = document.querySelector(".restart-btn");
-var submitButton = document.querySelector(".submit-btn");
 var name = document.getElementById("initial");
 
 // Hold global variables 
@@ -123,6 +122,9 @@ function startQuiz() {
             // When the answer is correct, add 20 points to score
             scoreCounter += 20;
             scoring.textContent = scoreCounter;
+
+            // Store the score in local storage
+            localStorage.setItem("scoreCounter", scoreCounter); 
         } 
         else {
             let card = document.querySelector(".box");
@@ -212,7 +214,35 @@ function startTimer() {
 }
 
 function gameOver() {
+    // If all questions are answered, display timer back to 0
+    timerCount = 0;
+
+    // hide quiz and reveal scoreboard 
     document.getElementById("scoreboard").removeAttribute("class", "hidden");
     document.getElementById("submit-btn").removeAttribute("class", "hidden");
     document.getElementById("boxIt").classList.add("hidden");
+
+    function storeScore() {
+
+        // Retrieve the score from local storage
+        let scoreCounter = localStorage.getItem("scoreCounter"); 
+        document.getElementById("total-score").textContent = `${scoreCounter}`;
+    }
+    storeScore();
+
+    // var submitButton = document.querySelector(".submit-btn");
+
+    // // retrieve and store the user's input
+    // submitButton.addEventListener("click", function(event) {
+    //     event.preventDefault();
+
+    //     var userName = document.querySelector("initial").value.trim();
+
+    //     if (userName === "") {
+    //         alert("You can not leave the item blank. Please enter your initials.");
+    //         return;
+    //     }
+
+    //     storeScore();
+    // });
 }

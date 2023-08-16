@@ -154,19 +154,22 @@ header {
     border-radius: 5%;
     margin-left: 700px;
     margin-right: 700px;
-    height: 230px;
+    height: 250px;
     background-color: var(--fadeblue);
     text-align: center;
+    font-family: var(--ftfam);
 }
 
-#scoreboard p {
+#total-score {
     position: relative;
-    top: 3rem;
+    top: 2rem;
+    font-weight: bold;
+    font-size: 30px;
 }
 
 .input {
     position: relative;
-    top: 4rem;
+    top: 3rem;
 }
 
 .sub {
@@ -175,7 +178,7 @@ header {
 
 #submit-btn {
     position: relative;
-    top: -4rem;
+    top: -5rem;
 }
 
 #highscore {
@@ -190,7 +193,7 @@ header {
 
 h2 {
     position: relative;
-    top: 2rem;
+    top: 1rem;
 }
 
 #restart-btn {
