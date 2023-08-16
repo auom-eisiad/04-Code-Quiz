@@ -28,10 +28,10 @@
             </div>
 
             <div class="start">
-                <button class="start-btn">BEGIN</button>
+                <button class="start-btn" id="start-btn">BEGIN</button>
             </div>
 
-            <section class="box">
+            <section class="box" id="boxIt">
                 <div class="questions">
                     <div class="question-progress"><span class="questionNumber">5</span> / 5</div>
                     <!-- <div class="decor">
@@ -45,25 +45,27 @@
                 
             </section>
 
-            <div class="score-board">
+            <div class="hidden" id="scoreboard">
                 <h2>Here's your score!</h2>
                 <p>
                     FINAL SCORE: 
                     <span id="total-score">____</span>
                 </p>
 
-                <h3>Enter your initials:</h3>
-                <input id="initial" type="text" name="name">
+                <div class="input">
+                    <h3>Enter your initials:</h3>
+                    <input id="initial" type="text" name="name">
+                </div>
             </div>
 
             <div class="sub">
-                <button class="submit-btn">SUBMIT</button>
+                <button class="hidden" id="submit-btn">SUBMIT</button>
             </div>
 
-            <div class="high-score">
+            <div class="hidden" id="highscore">
                 <h2>HIGH SCORE</h2>
                 <span id="winners"></span>
-                <button class="restart-btn">RESTART</button>
+                <button class="hidden" id="restart-btn">RESTART</button>
             </div>
     </main>
 

@@ -47,9 +47,9 @@ header {
     padding-left: 1%;
 }
 
-.start-btn,
-.submit-btn,
-.restart-btn {
+#start-btn,
+#submit-btn,
+#restart-btn {
     font-family: var(--ftfam);
     font-size: 18px;
     padding: 0px 50px;
@@ -61,9 +61,9 @@ header {
     text-align: center;
 }
 
-.start-btn:hover,
-.submit-btn:hover,
-.restart-btn:hover {
+#start-btn:hover,
+#submit-btn:hover,
+#restart-btn:hover {
     background-color: var(--cyan);
 }
 
@@ -144,11 +144,14 @@ header {
     flex-wrap: wrap;
 }
 
-.score-board {
+.hidden {
+    display: none;
+}
+
+#scoreboard {
     /* position: var(--post); */
     border: 0;
     border-radius: 5%;
-    margin-top: 50px;
     margin-left: 700px;
     margin-right: 700px;
     height: 230px;
@@ -156,24 +159,28 @@ header {
     text-align: center;
 }
 
-.score-board p {
+#scoreboard p {
     position: relative;
     top: 3rem;
+}
+
+.input {
+    position: relative;
+    top: 4rem;
 }
 
 .sub {
     text-align: center;
 }
 
-.submit-btn {
+#submit-btn {
     position: relative;
     top: -4rem;
 }
 
-.high-score {
+#highscore {
     border: 0;
     border-radius: 5%;
-    margin-top: 50px;
     margin-left: 700px;
     margin-right: 700px;
     height: 300px;
@@ -186,7 +193,7 @@ h2 {
     top: 2rem;
 }
 
-.restart-btn {
+#restart-btn {
     position: relative;
     top: 12rem;
 }

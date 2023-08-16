@@ -3,6 +3,7 @@ var text = document.querySelector(".question-here");
 var answers = document.querySelector(".answers");
 var score = document.querySelector(".score");
 var time = document.querySelector(".timer-count");
+var scoring = document.querySelector(".scoring");
 var startButton = document.querySelector(".start-btn");
 var restartButton = document.querySelector(".restart-btn");
 var submitButton = document.querySelector(".submit-btn");
@@ -75,10 +76,10 @@ function shuffleQuestions(arr) {
       // Swap the arr[i] and arr[randomIndex] vice versa at random
       [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]];
     }
-  }
-  
-  // Randomize the order of the questions
-  shuffleQuestions(questions);
+}
+   
+// Randomize the order of the questions
+shuffleQuestions(questions);
 
 // Once user click on begin, the timer starts and display first question with choices
 function startQuiz() {
@@ -111,13 +112,32 @@ function startQuiz() {
 
         // Check if the selected answer is correct or not. Otherwise, time will be deducted.
         if (answerButton.textContent === currentQuestionData.correct) {
-            console.log("Correct");
-        } else {
-            console.log("Wrong");
+            let card = document.querySelector(".box");
+            card.style.backgroundColor = "#8bc584";
+            
+            // Set a time for how long background color change before going back to original color
+            setTimeout(() => {
+                card.style.backgroundColor = "";
+            }, 500); 
+
+            // When the answer is correct, add 20 points to score
+            scoreCounter += 20;
+            scoring.textContent = scoreCounter;
+        } 
+        else {
+            let card = document.querySelector(".box");
+            card.style.backgroundColor = "#f17171";
+
+            setTimeout(() => {
+                card.style.backgroundColor = ""; 
+            }, 500);
+
+            timerCount -= 10;
         }
 
         // Move to next question
         nextQuestion();
+        
       });
   
       // Style the answer button
@@ -172,8 +192,7 @@ function nextQuestion() {
       // Move to the next question
       startQuiz();
     } else {
-      // Handle the case when there are no more questions
-      console.log("No more questions");
+      gameOver();
     }
 }
 
@@ -183,10 +202,17 @@ function startTimer() {
 
     timer = setInterval(function() {
         timerCount--;
-        time.textContent = timerCount;
+        time.textContent = Math.max(timerCount, 0);
         if (timerCount <= 0) {
             clearInterval(timer);
-            console.log("end");
+            timerCount = 0;
+            gameOver();
         } 
     }, 1000);
+}
+
+function gameOver() {
+    document.getElementById("scoreboard").removeAttribute("class", "hidden");
+    document.getElementById("submit-btn").removeAttribute("class", "hidden");
+    document.getElementById("boxIt").classList.add("hidden");
 }
