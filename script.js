@@ -48,7 +48,7 @@ var questions = [
                   "margin, box, padding, content"],
         correct: "margin, border, padding, content"
     }, 
-]
+];
 
 // When user clicks on begin button, the game starts
 startButton.addEventListener("click", function(event) {
@@ -87,8 +87,15 @@ function startQuiz() {
       answerButton.textContent = `${answer}`;
 
       // Add a click event listener to the answer button
-      answerButton.addEventListener("click", () => {
-       
+      answerButton.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        if (questions.answers == questions.correct) {
+            console.log("correct");
+        }
+        else {
+            console.log("wrong");
+        }
       });
   
       // Style the answer button
@@ -132,20 +139,6 @@ function startQuiz() {
   
     return randomQuestion.correct;
   }
-
-// function correctAnswer() {
-//     text.textContent = "Correct!";
-//     scoreCounter++
-//     startButton.disabled = false;
-//     setScore()
-// }
-
-// function incorrectAnswer() {
-//     text.textContent = "Incorrect!";
-//     scoreCounter--
-//     startButton.disabled = false;
-//     setScore()
-// }
 
 // function to hold the timer
 function startTimer() {
