@@ -5,7 +5,6 @@ var score = document.querySelector(".score");
 var time = document.querySelector(".timer-count");
 var scoring = document.querySelector(".scoring");
 var startButton = document.querySelector(".start-btn");
-var name = document.getElementById("initial");
 
 // Hold global variables 
 var currentQuestionIndex = 0;
