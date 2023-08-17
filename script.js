@@ -57,7 +57,7 @@ startButton.addEventListener("click", function(event) {
     startQuiz();
 
     // When button is clicked, it will hide the button
-    startButton.style.display = "none";
+    startButton.classList.add("hidden");
 });
 
 // Shuffle the questions array inspired from the Fisher-Yates shuffle
@@ -210,6 +210,13 @@ function startTimer() {
     }, 1000);
 }
 
+function storeScore() {
+
+    // Retrieve the score from local storage
+    let scoreCounter = localStorage.getItem("scoreCounter"); 
+    document.getElementById("total-score").textContent = `${scoreCounter}`;
+}
+
 function gameOver() {
     // If all questions are answered, display timer back to 0
     timerCount = 0;
@@ -219,58 +226,74 @@ function gameOver() {
     document.getElementById("submit-btn").removeAttribute("class", "hidden");
     document.getElementById("boxIt").classList.add("hidden");
 
-    function storeScore() {
-
-        // Retrieve the score from local storage
-        let scoreCounter = localStorage.getItem("scoreCounter"); 
-        document.getElementById("total-score").textContent = `${scoreCounter}`;
-    }
-
     storeScore();
+}
 
-    // Store the submit button in a variable to call on
-    var submitButton = document.getElementById("submit-btn");
+// var restartButton = document.getElementById("restart-btn");
 
-    // Retrieve and store the user's input
-    submitButton.addEventListener("click", function(event) {
-        event.preventDefault();
+// restartButton.addEventListener("click", function() {
+//     restartGame();
+// });
 
-        // Retrieve the user's initials
-        var initialInput = document.getElementById("initial");
-        var initials = initialInput.value;
+// function restartGame() {
+//      // Hide the highscore and restart button
+//     document.getElementById("highscore").classList.add("hidden");
+//     document.getElementById("restart-btn").classList.add("hidden");
+
+//     document.getElementById("boxIt").removeAttribute("class", "hidden");
+//     document.querySelector(".question-here").innerHTML = `Press the "Begin" button to start!`;
+//     document.querySelector(".answers").innerHTML = "";
+
+//     // display start button again
+//     startButton.removeAttribute("class", "hidden");
+
+//     // Shuffle the questions array again for a new game
+//     shuffleQuestions(questions);
+//     startQuiz();
+// }
+
+// Store the submit button in a variable to call on
+var submitButton = document.getElementById("submit-btn");
+
+// Retrieve and store the user's input
+submitButton.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    // Retrieve the user's initials
+    var initialInput = document.getElementById("initial");
+    var initials = initialInput.value;
+    
+    var highscore = localStorage.getItem("highscores");
+    if (highscore) {
+        var parseScore = JSON.parse(highscore);
+        parseScore.push({initials: initials, score: scoreCounter});
+        localStorage.setItem("highscores", JSON.stringify(parseScore));
+    }
+    else {
+        let scoreArr = [];
+        scoreArr.push({initials: initials, score: scoreCounter});
 
         // Store the initials in localStorage
-        localStorage.setItem("initials", initials);
-        localStorage.setItem("total-score", scoreCounter);
+        localStorage.setItem("highscores", JSON.stringify(scoreArr)); 
+    }
+    
+    // Give the class "hidden" back to hide scoreboard
+    document.getElementById("scoreboard").classList.add("hidden");
+    document.getElementById("submit-btn").classList.add("hidden"); 
+
+    // Remove the hidden class and display highscore
+    document.getElementById("highscore").removeAttribute("class", "hidden");
+    document.getElementById("restart-btn").removeAttribute("class", "hidden");
+    // document.getElementById("winners").textContent = initials + ":" + scoreCounter;
+
+    var arrayHighScores = JSON.parse(localStorage.getItem("highscores"));
+    for (let i = 0; i < arrayHighScores.length; i++) {
+        var listScore = document.createElement("li");
+        listScore.textContent = `${arrayHighScores[i].initials} : ${arrayHighScores[i].score}`;
         
-        // Give the class "hidden" back to hide scoreboard
-        document.getElementById("scoreboard").classList.add("hidden");
-        document.getElementById("submit-btn").classList.add("hidden"); 
+        listScore.classList.add("scoreList");
 
-        // Remove the hidden class and display highscore
-        document.getElementById("highscore").removeAttribute("class", "hidden");
-        document.getElementById("restart-btn").removeAttribute("class", "hidden");
-        document.getElementById("winners").textContent = initials + ":" + scoreCounter;
-    });
-
-    var restartButton = document.getElementById("restart-btn");
-
-    restartButton.addEventListener("click", function() {
-        restartGame();
-    });
-}
-
-function restartGame() {
-    // Shuffle the questions array again for a new game
-    shuffleQuestions(questions);
-
-    // Start the quiz again
-    startQuiz();
-
-    // Hide the highscore and restart button
-    document.getElementById("highscore").classList.add("hidden");
-    document.getElementById("restart-btn").classList.add("hidden");
-
-    // display start button again
-    startButton.style.display = "block";
-}
+        var wins = document.getElementById("winners");
+        wins.append(listScore);
+    }
+});

@@ -111,7 +111,7 @@ header {
     color: var(--cyan)
 }
 
-.box {
+#boxIt {
     border: 0;
     border-radius: 5%;
     margin-top: 60px;
@@ -205,13 +205,24 @@ header {
     top: 1rem;
 }
 
+.scoreList {
+    list-style: none;
+    text-align: center;
+    position: relative;
+    left: -5rem;
+    top: 1rem;
+}
+
 h2 {
     position: relative;
     top: 1rem;
 }
 
+.retry {
+    text-align: center;
+}
+
 #restart-btn {
     position: relative;
-    top: 12rem;
-    left: -2rem;
+    top: -5rem;
 }
