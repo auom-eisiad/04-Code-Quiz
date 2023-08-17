@@ -5,7 +5,6 @@ var score = document.querySelector(".score");
 var time = document.querySelector(".timer-count");
 var scoring = document.querySelector(".scoring");
 var startButton = document.querySelector(".start-btn");
-var restartButton = document.querySelector(".restart-btn");
 var name = document.getElementById("initial");
 
 // Hold global variables 
@@ -60,7 +59,6 @@ startButton.addEventListener("click", function(event) {
 
     // When button is clicked, it will hide the button
     startButton.style.display = "none";
-    console.log("Clicked");
 });
 
 // Shuffle the questions array inspired from the Fisher-Yates shuffle
@@ -228,21 +226,52 @@ function gameOver() {
         let scoreCounter = localStorage.getItem("scoreCounter"); 
         document.getElementById("total-score").textContent = `${scoreCounter}`;
     }
+
     storeScore();
 
-    // var submitButton = document.querySelector(".submit-btn");
+    // Store the submit button in a variable to call on
+    var submitButton = document.getElementById("submit-btn");
 
-    // // retrieve and store the user's input
-    // submitButton.addEventListener("click", function(event) {
-    //     event.preventDefault();
+    // Retrieve and store the user's input
+    submitButton.addEventListener("click", function(event) {
+        event.preventDefault();
 
-    //     var userName = document.querySelector("initial").value.trim();
+        // Retrieve the user's initials
+        var initialInput = document.getElementById("initial");
+        var initials = initialInput.value;
 
-    //     if (userName === "") {
-    //         alert("You can not leave the item blank. Please enter your initials.");
-    //         return;
-    //     }
+        // Store the initials in localStorage
+        localStorage.setItem("initials", initials);
+        localStorage.setItem("total-score", scoreCounter);
+        
+        // Give the class "hidden" back to hide scoreboard
+        document.getElementById("scoreboard").classList.add("hidden");
+        document.getElementById("submit-btn").classList.add("hidden"); 
 
-    //     storeScore();
-    // });
+        // Remove the hidden class and display highscore
+        document.getElementById("highscore").removeAttribute("class", "hidden");
+        document.getElementById("restart-btn").removeAttribute("class", "hidden");
+        document.getElementById("winners").textContent = initials + ":" + scoreCounter;
+    });
+
+    var restartButton = document.getElementById("restart-btn");
+
+    restartButton.addEventListener("click", function() {
+        restartGame();
+    });
+}
+
+function restartGame() {
+    // Shuffle the questions array again for a new game
+    shuffleQuestions(questions);
+
+    // Start the quiz again
+    startQuiz();
+
+    // Hide the highscore and restart button
+    document.getElementById("highscore").classList.add("hidden");
+    document.getElementById("restart-btn").classList.add("hidden");
+
+    // display start button again
+    startButton.style.display = "block";
 }
