@@ -67,6 +67,11 @@ header {
     background-color: var(--cyan);
 }
 
+#start-btn {
+    position: relative;
+    top: 22rem;
+}
+
 .numbers {
     position: absolute;
     top: 7rem;
@@ -83,7 +88,6 @@ header {
     
 .start {
     text-align: center;
-    margin-top: 20px;
 }
 
 /* add "less-than" symbol for display before title */
@@ -110,7 +114,7 @@ header {
 .box {
     border: 0;
     border-radius: 5%;
-    margin-top: 20px;
+    margin-top: 60px;
     margin-left: 250px;
     margin-right: 250px;
     height: 700px;
