@@ -222,47 +222,61 @@ function gameOver() {
     timerCount = 0;
 
     // hide quiz and reveal scoreboard 
-    document.getElementById("scoreboard").removeAttribute("class", "hidden");
-    document.getElementById("submit-btn").removeAttribute("class", "hidden");
+    document.getElementById("scoreboard").classList.remove("hidden"); 
+    document.getElementById("submit-btn").classList.remove("hidden"); 
     document.getElementById("boxIt").classList.add("hidden");
 
     storeScore();
 }
 
-// var restartButton = document.getElementById("restart-btn");
+// Declare the restart button
+var restartButton = document.getElementById("restart-btn");
 
-// restartButton.addEventListener("click", function() {
-//     restartGame();
-// });
+// Give the restart button a click event to restart the game
+restartButton.addEventListener("click", function() {
+    restartGame();
+    
+});
 
-// function restartGame() {
-//      // Hide the highscore and restart button
-//     document.getElementById("highscore").classList.add("hidden");
-//     document.getElementById("restart-btn").classList.add("hidden");
+// Restart the game to play again
+function restartGame() {
 
-//     document.getElementById("boxIt").removeAttribute("class", "hidden");
-//     document.querySelector(".question-here").innerHTML = `Press the "Begin" button to start!`;
-//     document.querySelector(".answers").innerHTML = "";
+    //  // Hide the highscore and restart button
+    document.getElementById("highscore").classList.add("hidden");
+    document.getElementById("restart-btn").classList.add("hidden");
 
-//     // display start button again
-//     startButton.removeAttribute("class", "hidden");
+    document.getElementById("scoreboard").classList.add("hidden");
+    document.getElementById("submit-btn").classList.add("hidden"); 
 
-//     // Shuffle the questions array again for a new game
-//     shuffleQuestions(questions);
-//     startQuiz();
-// }
+    // // Display the front page of the quiz
+    document.getElementById("boxIt").classList.remove("hidden"); 
+
+    document.querySelector(".question-here").innerHTML = `Press the "Begin" button to start!`;
+    document.querySelector(".answers").innerHTML = "";
+
+    // // display start button to play
+    startButton.classList.remove("hidden"); 
+
+    currentQuestionIndex = 0;
+
+    // // Call back all functions
+    shuffleQuestions(questions);
+}
+
+// restartButton.onclick = startQuiz;
 
 // Store the submit button in a variable to call on
 var submitButton = document.getElementById("submit-btn");
 
-// Retrieve and store the user's input
+// When user click the submit button, retrieve and store the user's input
 submitButton.addEventListener("click", function(event) {
     event.preventDefault();
 
-    // Retrieve the user's initials
+    // Retrieve the user's initials and save its value
     var initialInput = document.getElementById("initial");
     var initials = initialInput.value;
     
+    // Retrieve the initials and score and if true, parse it but if there is more, it will join it into an array
     var highscore = localStorage.getItem("highscores");
     if (highscore) {
         var parseScore = JSON.parse(highscore);
@@ -273,7 +287,7 @@ submitButton.addEventListener("click", function(event) {
         let scoreArr = [];
         scoreArr.push({initials: initials, score: scoreCounter});
 
-        // Store the initials in localStorage
+        // Store the highscore and stringify it with the score array
         localStorage.setItem("highscores", JSON.stringify(scoreArr)); 
     }
     
@@ -282,10 +296,10 @@ submitButton.addEventListener("click", function(event) {
     document.getElementById("submit-btn").classList.add("hidden"); 
 
     // Remove the hidden class and display highscore
-    document.getElementById("highscore").removeAttribute("class", "hidden");
-    document.getElementById("restart-btn").removeAttribute("class", "hidden");
-    // document.getElementById("winners").textContent = initials + ":" + scoreCounter;
+    document.getElementById("highscore").classList.remove("hidden"); 
+    document.getElementById("restart-btn").classList.remove("hidden"); 
 
+    // Display the high score and add on the array
     var arrayHighScores = JSON.parse(localStorage.getItem("highscores"));
     for (let i = 0; i < arrayHighScores.length; i++) {
         var listScore = document.createElement("li");
