@@ -17,7 +17,7 @@ N/A
 
 ## Usage
 
-Website: 
+Website: https://auom-eisiad.github.io/04-Code-Quiz/
 ![Website](assets/images/website.png)
 
 When the user enters the browser, they will see the front page of the site and a blue button saying "Begin". The user will need to click on the button to start the quiz. When they do, the quiz will begin with the first question randomly generated and the timer will count down from 50 seconds. Each question they go through that the user answers right will get 20 points and the screen will turn green. However, if they answer wrong, the scene will turn red and the timer will go down 10 seconds. If they run out of time or all questions are answered, the user is taken to the score board to enter their own initials and see their total score. After they click submit, they are taken to the leaderboard to see their score displayed and can restart the quiz to see if they can do better. Their previous score will be saved and displayed after thry complete the quiz again.
