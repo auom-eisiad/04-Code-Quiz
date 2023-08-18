@@ -131,6 +131,7 @@ function startQuiz() {
                 card.style.backgroundColor = ""; 
             }, 500);
 
+            // Deduct points if answered wrong
             timerCount -= 10;
         }
 
@@ -197,8 +198,11 @@ function nextQuestion() {
 
 // function to hold the timer
 function startTimer() {
+    
+    // Give a timer of 50 seconds
     timerCount = 50;
 
+    // set an interval counting down by 1 second and if reach 0, return to 0 and run gameOver function
     timer = setInterval(function() {
         timerCount--;
         time.textContent = Math.max(timerCount, 0);
@@ -211,9 +215,8 @@ function startTimer() {
 }
 
 function storeScore() {
-
     // Retrieve the score from local storage
-    let scoreCounter = localStorage.getItem("scoreCounter"); 
+    scoreCounter = localStorage.getItem("scoreCounter"); 
     document.getElementById("total-score").textContent = `${scoreCounter}`;
 }
 
@@ -235,11 +238,13 @@ var restartButton = document.getElementById("restart-btn");
 // Give the restart button a click event to restart the game
 restartButton.addEventListener("click", function() {
     restartGame();
-    
 });
 
 // Restart the game to play again
 function restartGame() {
+    // Reset the score to 0
+    scoreCounter = 0;
+    document.querySelector(".scoring").innerHTML = `0`;
 
     //  // Hide the highscore and restart button
     document.getElementById("highscore").classList.add("hidden");
@@ -257,13 +262,12 @@ function restartGame() {
     // // display start button to play
     startButton.classList.remove("hidden"); 
 
+    // Set back to 0
     currentQuestionIndex = 0;
 
     // // Call back all functions
     shuffleQuestions(questions);
 }
-
-// restartButton.onclick = startQuiz;
 
 // Store the submit button in a variable to call on
 var submitButton = document.getElementById("submit-btn");
@@ -284,6 +288,7 @@ submitButton.addEventListener("click", function(event) {
         localStorage.setItem("highscores", JSON.stringify(parseScore));
     }
     else {
+        // Set an empty array to allow storing multiples
         let scoreArr = [];
         scoreArr.push({initials: initials, score: scoreCounter});
 
@@ -298,6 +303,9 @@ submitButton.addEventListener("click", function(event) {
     // Remove the hidden class and display highscore
     document.getElementById("highscore").classList.remove("hidden"); 
     document.getElementById("restart-btn").classList.remove("hidden"); 
+
+     // Clear the winners before appending
+    winners.innerHTML = "";
 
     // Display the high score and add on the array
     var arrayHighScores = JSON.parse(localStorage.getItem("highscores"));
